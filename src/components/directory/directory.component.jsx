@@ -1,0 +1,80 @@
+import React, { Component } from "react";
+import MenuItem from "../menu-item/menu-item.component";
+import "./directory.styles.scss";
+
+class Directory extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      sections: [
+        {
+          title: "hats",
+          imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+          id: 1,
+          linkUrl: "shop/hats"
+        },
+        {
+          title: "jackets",
+          imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
+          id: 2,
+          linkUrl: "shop/jackets"
+        },
+        {
+          title: "sneakers",
+          imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
+          id: 3,
+          linkUrl: "shop/sneakers"
+        },
+        {
+          title: "womens",
+          imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
+          size: "large",
+          id: 4,
+          linkUrl: "shop/womens"
+        },
+        {
+          title: "mens",
+          imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+          size: "large",
+          id: 5,
+          linkUrl: "shop/mens"
+        }
+      ]
+    };
+  }
+
+  render() {
+    return (
+      <div className="directory-menu">
+        {this.state.sections.map((
+          //destructuring here helps avoid refering section dot everytime
+          { id, ...otherSectionProps }
+        ) => (
+          <MenuItem key={id} {...otherSectionProps} />
+        ))}
+      </div>
+    );
+  }
+}
+
+//above is same as below. As key and value are same we are use es6 destructuring to pass around.
+// As id has a different key, we need to pass it separately.
+// return (
+//   <div className="directory-menu">
+//     {this.state.sections.map((
+//       //destructuring here helps avoid refering section dot everytime
+//       { title, imageUrl, id, size, linkUrl }
+//     ) => (
+//       <MenuItem
+//         key={id}
+//         title={title}
+//         imageUrl={imageUrl}
+//         size={size}
+//         linkUrl={linkUrl}
+//       />
+//     ))}
+//   </div>
+// );
+
+export default Directory;
